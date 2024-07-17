@@ -26,7 +26,8 @@ fn main() {
         let device_desc = device.device_descriptor().unwrap();
         if device_desc.vendor_id() == VENDOR_ID && device_desc.product_id() == PRODUCT_ID {
             info!("Found Litra Beam");
-            device_handle = Some(device.open().unwrap());
+            let device = device.open().expect("Could not open device");
+            device_handle = Some(device);
             break;
         }
     }
